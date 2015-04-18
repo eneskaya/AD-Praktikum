@@ -161,9 +161,9 @@
             geschieht jedoch für jeden Aufruf erneut.
             Wir gehen derzeit davon aus, dass $fib2$ einen Platzaufwand von 
             $O(n)$ hat, da im schlimmsten Fall genau $n$ Werte berechnet
-            und gespeichert werden müssen. Bei $fib3$ gehen wir dagegen davon 
-            aus, dass der Platzaufwand exponentiell, also $O(2^n)$ ansteigt,
-            da fü jeden Aufruf immer die nächsten Variablen übergeben müssen.
+            und gespeichert werden müssen. Bei $fib3$ gehen wir ebenfalls davon 
+            aus, dass der Platzaufwand linear ansteigt, also auch $O(n)$ beträgt.
+
         </p>
         <h3>Implementierung</h3>
         <!-- In diesem Element wird der Inhalt des scripts mit der ID ad-1-2-code angezeigt -->
@@ -309,12 +309,24 @@
 
         <h3>Experimente</h3>
         <p>Laufzeitverhalten im Vergleich</p>
+        <p>fib $O(2^n)$</p>
+        <p>fib2 $O(1)$</p>
+        <p>fib3 $O(n)$</p>
+        <p>fib4 $O(n)$</p>
         <div id="ad-1-2-experiments" style="height: 250px;"></div>
         <p>Laufzeitverhalten im Vergleich (memory von fib2 wurde zwischen den Aufrufen ausgehebelt)</p>
+        <p>fib $O(2^n)$</p>
+        <p>fib2 $O(n)$</p>
+        <p>fib3 $O(n)$</p>
+        <p>fib4 $O(n)$</p>
         <div id="ad-1-2-experiments2" style="height: 250px;"></div>
         <p>Laufzeitverhalten im Vergleich - Rückwärts</p>
+        <p>fib2 $O(1)$</p>
+        <p>fib3 $O(n)$</p>
+        <p>fib4 $O(n)$</p>
         <div id="ad-1-2-experiments3" style="height: 250px;"></div>
         <p>Funktionsergebnisse</p>
+        <p>Dies zeigt das sie alle auf das selbe Ergebnis kommen.</p>
         <div id="ad-1-2-values" style="height: 250px;"></div>
         <script>
             new Morris.Line({

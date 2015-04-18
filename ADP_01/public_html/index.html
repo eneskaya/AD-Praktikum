@@ -60,7 +60,13 @@
         </h2>
         <ol>
             <li>
-                Eine naive Implementierung, bspw. mittels einer Schleife, hat einen Laufzeitaufwand und Speicherplatzbedarf von $O(n)$
+                Zeitaufwand: $O(n)$, Platzaufwand: $O(1)$<br />
+                Eine naive Implementierung wird einfach simulieren, nach wievielen Schritten sie vom Start- beim Zielpunkt ankommt.
+                Man kann berechnen, nach wievielen Schritten der Zielpunkt erreicht ist: $(y-x)/d$, das w&auml;re f&uuml;r unser Beispiel $(80-15)/30) = 2,1666...$.
+                Da es keine Teil-Schritte gibt, muss bei Nachkommastellen aufgerundet werden und so kommen wir für das Beispiel zu den in der Aufgabe genannten drei Schritten.
+                Die naive Implementierung w&uuml;rde den Startwert in einer Schleife mit dem Schrittma&szlig; aufaddieren, bis das Ergebnis gr&ouml;&szlig;er als der Zielpunkt ist.
+                Bei der Simulation müssen zusätzlich zu den drei vorgegebenen keine neuen (dynamisch allokierten) Speicherbereiche verwendet werden.
+                Deshalb entspricht der Zeitaufwand $O(n)$ und der Platzaufwand $O(1)$.
             </li>
             <li>
                 Siehe unten.
@@ -75,10 +81,9 @@
             Testergebnisse
         </h3>
         <div id="ad-1-1-results"></div>
+
         <!-- Code und Tests hier hin -->
         <script id="ad-1-1-code">
-            // Experiments
-
             function steps(x, y, d) {
                 var start = x;
                 var ziel = y;
@@ -91,7 +96,6 @@
 
                 return Math.ceil((ziel - start) / schritt);
             }
-
 
             function step_naiv(x, y, d) {
                 var start = x;
@@ -107,7 +111,6 @@
                 return count_step;
             }
 
-
             // Tests
             assert(steps(15, 80, 30) === 3, "Beispielaufruf nach Vorgabe");
             assert(steps(150, 91, 30) === 0, "X > Y");
@@ -122,8 +125,6 @@
         <script>
             $('pre#ad-1-1-source').html($('#ad-1-1-code').html())
         </script>
-
-
         <!-- Aufgabe 2 -->
 
         <h2>Aufgabe 2</h2>
@@ -419,7 +420,7 @@
 
                 this.insert = function (value, pos) {
                     if (pos < 0 || pos > size) {
-                        // TODO: Fehler
+                        alert("Ungültige Stelle");
                     } else {
                         var vorgaenger = listStart;
                         //alert("value: " + value + ", pos: " + pos + ", size: " + size);
@@ -484,13 +485,13 @@
 
                 this.insert = function (value, pos) {
                     if (pos < 0 || pos > size) {
-                        // TODO: Fehler
+                        alert("Ungültige Position");
                     } else {
                         //alert("value: " + value + ", pos: " + pos + ", size: " + size + ", capacity: " + capacity);
                         if (size >= capacity) {
                             var oldCapacity = capacity;
                             var oldArray = array;
-                            capacity = capacity * 2;
+                            capacity = capacity + 10;
                             array = new Array(capacity);
                             for (i = 0; i < oldCapacity; i++) {
                                 array[i] = oldArray[i];
@@ -643,16 +644,16 @@
                 parseTime: false, // do values relate to dates (time)?
                 data: ad_1_3_linked_data, // Chart data records -- each entry in this array corresponds to a point on the chart.
                 xkey: 'experiment', // The name of the data record attribute that contains x-values.
-                ykeys: ['aufgabe3', 'aufgabe4', 'aufgabe5', 'aufgabe5_mittelwert'], // A list of names of data record attributes that contain y-values.
-                labels: ['Einfügen am Anfang', 'Einfügen am Ende', 'Einfügen Random', 'Einfügen Random (Mittelwert)'] // Labels for the ykeys -- will be displayed when you hover over the chart.
+                ykeys: ['aufgabe3', 'aufgabe4', 'aufgabe5_mittelwert'], // A list of names of data record attributes that contain y-values.
+                labels: ['Einfügen am Anfang', 'Einfügen am Ende', 'Einfügen Random (Mittelwert)'] // Labels for the ykeys -- will be displayed when you hover over the chart.
             });
             new Morris.Line({
                 element: 'ad-1-3-array-experiments', // ID of the element in which to draw the chart.
                 parseTime: false, // do values relate to dates (time)?
                 data: ad_1_3_array_data, // Chart data records -- each entry in this array corresponds to a point on the chart.
                 xkey: 'experiment', // The name of the data record attribute that contains x-values.
-                ykeys: ['aufgabe3', 'aufgabe4', 'aufgabe5', 'aufgabe5_mittelwert'], // A list of names of data record attributes that contain y-values.
-                labels: ['Einfügen am Anfang', 'Einfügen am Ende', 'Einfügen Random', 'Einfügen Random (Mittelwert)'] // Labels for the ykeys -- will be displayed when you hover over the chart.
+                ykeys: ['aufgabe3', 'aufgabe4', 'aufgabe5'], // A list of names of data record attributes that contain y-values.
+                labels: ['Einfügen am Anfang', 'Einfügen am Ende', 'Einfügen Random'] // Labels for the ykeys -- will be displayed when you hover over the chart.
             });
         </script>
     </body>

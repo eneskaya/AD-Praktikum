@@ -456,6 +456,7 @@
                         listStart.nachfolger = listStart.nachfolger.nachfolger;
                         size--;
                     }
+                    return this;
                 };
 
                 this.length = function () {
@@ -481,7 +482,7 @@
                         knoten = knoten.nachfolger;
                         text = text + knoten.content + " ";
                     }
-                    alert(text);
+                    console.log(text);
                 };
             }
             
@@ -530,6 +531,7 @@
                     }
                     array[size] = null;
                     size--;
+                    return this;
                 };
 
                 this.length = function () {

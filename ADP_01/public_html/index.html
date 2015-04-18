@@ -223,14 +223,14 @@
             }
 
             // Experiments
-            var ad_1_2_data_times = [];
+            var ad_1_2_data_count = [];
             var ad_1_2_data_values = [];
             for (i = 0; i <= 100; i++) {
                 var measure_fib = i <= 10 ? measureCounter(fib, i) : {value: undefined, time: undefined};
                 var measure_fib2 = measureCounter(fib2, i);
                 var measure_fib3 = measureCounter(fib3, i);
                 var measure_fib4 = measureCounter(fib4, i);
-                ad_1_2_data_times.push({
+                ad_1_2_data_count.push({
                     experiment: i,
                     fib: measure_fib['time'],
                     fib2: measure_fib2['time'],
@@ -246,14 +246,14 @@
                 });
             }
 
-            var ad_1_2_data_times2 = [];
+            var ad_1_2_data_count2 = [];
             for (i = 0; i <= 100; i++) {
                 fib2memory = {};
                 var measure_fib = i <= 10 ? measureCounter(fib, i) : {value: undefined, time: undefined};
                 var measure_fib2 = measureCounter(fib2, i);
                 var measure_fib3 = measureCounter(fib3, i);
                 var measure_fib4 = measureCounter(fib4, i);
-                ad_1_2_data_times2.push({
+                ad_1_2_data_count2.push({
                     experiment: i,
                     fib: measure_fib['time'],
                     fib2: measure_fib2['time'],
@@ -262,12 +262,12 @@
                 });
             }
 
-            var ad_1_2_data_times3 = [];
+            var ad_1_2_data_count3 = [];
             for (i = 5000; i >= 1000; i -= 100) {
                 var measure_fib2 = measureCounter(fib2, i);
                 var measure_fib3 = measureCounter(fib3, i);
                 var measure_fib4 = measureCounter(fib4, i);
-                ad_1_2_data_times3.push({
+                ad_1_2_data_count3.push({
                     experiment: i,
                     fib2: measure_fib2['time'],
                     fib3: measure_fib3['time'],
@@ -276,7 +276,7 @@
             }
 
             // Tests
-            assert(ad_1_2_data_times.length === 101, "experiments have collected data");
+            assert(ad_1_2_data_count.length === 101, "experiments have collected data");
             assert(typeof (fib) === 'function', "function 'fib' implemented");
             assert(fib(1) === 1, "Test fuer fib(1) = 1");
             assert(fib(5) === 8, "Test fuer fib(5) = 8");
@@ -308,22 +308,33 @@
         <script>$('pre#ad-1-2-source').html($('#ad-1-2-code').html())</script>
 
         <h3>Experimente</h3>
-        <p>Laufzeitverhalten im Vergleich</p>
-        <p>fib $O(2^n)$</p>
-        <p>fib2 $O(1)$</p>
-        <p>fib3 $O(n)$</p>
-        <p>fib4 $O(n)$</p>
+        <p>Laufzeitverhalten und Rechenschritte im Vergleich</p>
+        <p>fib $O(2^n)$ (rekursiv)</p>
+        <p>fib2 $O(1)$ (memorization)</p>
+        <p>fib3 $O(n)$ (verbesserte rekursive Form)</p>
+        <p>fib4 $O(n)$ (iterativ)</p>
+        <p>Anhand dieses Graphen kann man erkennen, dass fib2 - fib4 in realer Zeit selbst höhere Fibonacci Zahlen berechen können,
+        während fib durch seine exponentielle Steigung schon für die Berechnung der 10 Fibonacci Zahl sehr lange benötigt.
+        Desweiteren ist zu erkennen, dass fib3 und fib4 eine lineare und fib2 sogar eine konstante Steigung besitzen.</p>
         <div id="ad-1-2-experiments" style="height: 250px;"></div>
         <p>Laufzeitverhalten im Vergleich (memory von fib2 wurde zwischen den Aufrufen ausgehebelt)</p>
-        <p>fib $O(2^n)$</p>
-        <p>fib2 $O(n)$</p>
-        <p>fib3 $O(n)$</p>
-        <p>fib4 $O(n)$</p>
+        <p>fib $O(2^n)$ (rekursiv)</p>
+        <p>fib2 $O(n)$ (memorization)</p>
+        <p>fib3 $O(n)$ (verbesserte rekursive Form)</p>
+        <p>fib4 $O(n)$ (iterativ)</p>
+        <p>In diesem Versuch haben wir die das Memory Array von fib2 ausgehebelt, 
+        dadurch entsteht für fib2 sogar eine höhere Steigung als fib3 und ist nicht mehr §O(1)$,
+        sondern §O(n)$. Dies entsteht durch die erhöhte Rechenschritt anzahl.</p>
         <div id="ad-1-2-experiments2" style="height: 250px;"></div>
         <p>Laufzeitverhalten im Vergleich - Rückwärts</p>
-        <p>fib2 $O(1)$</p>
-        <p>fib3 $O(n)$</p>
-        <p>fib4 $O(n)$</p>
+        <p>fib2 $O(1)$ (memorization)</p>
+        <p>fib3 $O(n)$ (verbesserte rekursive Form)</p>
+        <p>fib4 $O(n)$ (iterativ)</p>
+        <p>Diesesmal fangen wir die Berechnung anfangs mit der 5000 Fibonacci Zahl 
+        und dann in 100er schritten bis zur 1000 Fibonacci Zahl.
+        Anfangs muss fib2 sehr viele Rechenschritte vollziehen (Laufzeit von §O(n)§), 
+        benötigt danach dann wieder nur 1 Rechenschritt und ist somit wieder bei einer 
+        Laufzeit von §O(1)§.</p>
         <div id="ad-1-2-experiments3" style="height: 250px;"></div>
         <p>Funktionsergebnisse</p>
         <p>Dies zeigt das sie alle auf das selbe Ergebnis kommen.</p>
@@ -333,7 +344,7 @@
             new Morris.Line({
                 element: 'ad-1-2-experiments', // ID of the element in which to draw the chart.
                 parseTime: false, // do values relate to dates (time)?
-                data: ad_1_2_data_times, // Chart data records -- each entry in this array corresponds to a point on the chart.
+                data: ad_1_2_data_count, // Chart data records -- each entry in this array corresponds to a point on the chart.
                 xkey: 'experiment', // The name of the data record attribute that contains x-values.
                 ykeys: ['fib', 'fib2', 'fib3', 'fib4'], // A list of names of data record attributes that contain y-values.
                 labels: ['fib O(2^n)', 'fib2 O(1)', 'fib3 O(n)', 'fib4 O(n)'] // Labels for the ykeys -- will be displayed when you hover over the chart.
@@ -341,7 +352,7 @@
             new Morris.Line({
                 element: 'ad-1-2-experiments2', // ID of the element in which to draw the chart.
                 parseTime: false, // do values relate to dates (time)?
-                data: ad_1_2_data_times2, // Chart data records -- each entry in this array corresponds to a point on the chart.
+                data: ad_1_2_data_count2, // Chart data records -- each entry in this array corresponds to a point on the chart.
                 xkey: 'experiment', // The name of the data record attribute that contains x-values.
                 ykeys: ['fib', 'fib2', 'fib3', 'fib4'], // A list of names of data record attributes that contain y-values.
                 labels: ['fib O(2^n)', 'fib2 O(n)', 'fib3 O(n)', 'fib4 O(n)'] // Labels for the ykeys -- will be displayed when you hover over the chart.
@@ -349,7 +360,7 @@
             new Morris.Line({
                 element: 'ad-1-2-experiments3', // ID of the element in which to draw the chart.
                 parseTime: false, // do values relate to dates (time)?
-                data: ad_1_2_data_times3, // Chart data records -- each entry in this array corresponds to a point on the chart.
+                data: ad_1_2_data_count3, // Chart data records -- each entry in this array corresponds to a point on the chart.
                 xkey: 'experiment', // The name of the data record attribute that contains x-values.
                 ykeys: ['fib2', 'fib3', 'fib4'], // A list of names of data record attributes that contain y-values.
                 labels: ['fib2 O(1)', 'fib3 O(n)', 'fib4 O(n)'] // Labels for the ykeys -- will be displayed when you hover over the chart.
@@ -650,8 +661,14 @@
 
         <h3>Experimente</h3>
         <p>LinkedList Experimente</p>
+        <p>Wenn wir bei unserer Linklist ein Element vorne anfügen, so benötigen wir eine konstante Anzahl an schritten $O(1)$ (blaue Linie).
+        Wollen wir jedoch am ende der Linklist ein Element hinzufügen benötigen wir $O(n)$ schritte (graue Linie).
+        Durch das Einfügen der Elemente an einer Zufälligen stelle bekommen wir einen Mittelwert raus $O(n)$ (grüne Linie).</p>
         <div id="ad-1-3-linked-experiments" style="height: 250px;"></div>
         <p>ArrayList Experimente</p>
+        <p>Wenn wir bei unserer Arraylist ein Element vorne anfügen, so benötigen wir eine lineare Anzahl an schritten $O(n)$, da wir die restlichen Elemente der Liste beim vorne einfürgen $n$ mal nach rechts verschieben müssen (blaue Linie).
+        Wollen wir jedoch am ende der Arraylist ein Element hinzufügen benötigen wir $O(1)$ schritte (graue Linie).
+        Durch das Einfügen der Elemente an einer Zufälligen stelle bekommen wir einen Mittelwert raus $O(n)$ (grüne Linie). </p>
         <div id="ad-1-3-array-experiments" style="height: 250px;"></div>
         <script>
             new Morris.Line({

@@ -415,7 +415,7 @@
 
                 this.cons = function (value) {
                     this.insert(value, 0);
-                }
+                };
 
                 this.insert = function (value, pos) {
                     if (pos < 0 || pos > size) {
@@ -431,46 +431,46 @@
                         vorgaenger.nachfolger = new LinkedNode(value, nachfolger);
                         size++;
                     }
-                }
+                };
 
                 this.head = function () {
-                    return listStart.nachfolger != null ? listStart.nachfolger.content : null;
-                }
+                    return listStart.nachfolger !== null ? listStart.nachfolger.content : null;
+                };
 
                 this.tail = function () {
                     if (!this.isEmpty()) {
                         listStart.nachfolger = listStart.nachfolger.nachfolger;
                         size--;
                     }
-                }
+                };
 
                 this.length = function () {
                     return size;
-                }
+                };
 
                 this.isEmpty = function () {
-                    return listStart.nachfolger == null;
-                }
+                    return listStart.nachfolger === null;
+                };
 
                 this.getRefCounter = function () {
                     return refCounter;
-                }
+                };
 
                 this.resetRefCounter = function () {
                     refCounter = 0;
-                }
+                };
 
                 this.print = function () {
                     var text = "";
                     var knoten = listStart;
-                    while (knoten.nachfolger != null) {
+                    while (knoten.nachfolger !== null) {
                         knoten = knoten.nachfolger;
                         text = text + knoten.content + " ";
                     }
                     alert(text);
-                }
+                };
             }
-
+            
             function ArrayList(capacity) {
                 var capacity = capacity ? capacity : 10;
                 var array = new Array(this.capacity);
@@ -480,7 +480,7 @@
 
                 this.cons = function (value) {
                     this.insert(value, 0);
-                }
+                };
 
                 this.insert = function (value, pos) {
                     if (pos < 0 || pos > size) {
@@ -504,7 +504,7 @@
                         array[pos] = value;
                         size++;
                     }
-                }
+                };
 
                 this.head = function () {
                     return array[0];
@@ -516,23 +516,23 @@
                     }
                     array[size] = null;
                     size--;
-                }
+                };
 
                 this.length = function () {
                     return size;
-                }
+                };
 
                 this.isEmpty = function () {
-                    return this.length() == 0;
-                }
+                    return this.length() === 0;
+                };
 
                 this.getRefCounter = function () {
                     return refCounter;
-                }
+                };
 
                 this.resetRefCounter = function () {
                     refCounter = 0;
-                }
+                };
 
                 this.print = function () {
                     var text = "";
@@ -540,7 +540,7 @@
                         text += array[i] + " ";
                     }
                     alert(text);
-                }
+                };
             }
 
             // Experiments
@@ -608,26 +608,26 @@
             assert(testLinkedList1.isEmpty(), "Neue Liste ist leer");
             testLinkedList1.cons(1);
             assert(!testLinkedList1.isEmpty(), "Liste mit einem Element ist nicht leer");
-            assert(testLinkedList1.length() == 1, "Länge nach Einfügen von '1': 1");
-            assert(testLinkedList1.head() == 1, "Oberstes Element nach Einfügen von '1': 1");
+            assert(testLinkedList1.length() === 1, "Länge nach Einfügen von '1': 1");
+            assert(testLinkedList1.head() === 1, "Oberstes Element nach Einfügen von '1': 1");
             testLinkedList1.cons(2);
-            assert(testLinkedList1.length() == 2, "Länge nach Einfügen von '2': 2");
-            assert(testLinkedList1.head() == 2, "Oberstes Element nach Einfügen von '2': 2");
+            assert(testLinkedList1.length() === 2, "Länge nach Einfügen von '2': 2");
+            assert(testLinkedList1.head() === 2, "Oberstes Element nach Einfügen von '2': 2");
             testLinkedList1.tail();
-            assert(testLinkedList1.head() == 1, "Oberstes Element nach Entfernen des vorherigen obersten Elements (2): 1");
+            assert(testLinkedList1.head() === 1, "Oberstes Element nach Entfernen des vorherigen obersten Elements (2): 1");
             document.write("<br />");
 
             var testArrayList1 = new ArrayList();
             assert(testArrayList1.isEmpty(), "Neue Liste ist leer");
             testArrayList1.cons(1);
             assert(!testArrayList1.isEmpty(), "Liste mit einem Element ist nicht leer");
-            assert(testArrayList1.length() == 1, "Länge nach Einfügen von '1': 1");
-            assert(testArrayList1.head() == 1, "Oberstes Element nach Einfügen von '1': 1");
+            assert(testArrayList1.length() === 1, "Länge nach Einfügen von '1': 1");
+            assert(testArrayList1.head() === 1, "Oberstes Element nach Einfügen von '1': 1");
             testArrayList1.cons(2);
-            assert(testArrayList1.length() == 2, "Länge nach Einfügen von '2': 2");
-            assert(testArrayList1.head() == 2, "Oberstes Element nach Einfügen von '2': 2");
+            assert(testArrayList1.length() === 2, "Länge nach Einfügen von '2': 2");
+            assert(testArrayList1.head() === 2, "Oberstes Element nach Einfügen von '2': 2");
             testArrayList1.tail();
-            assert(testArrayList1.head() == 1, "Oberstes Element nach Entfernen des vorherigen obersten Elements (2): 1");
+            assert(testArrayList1.head() === 1, "Oberstes Element nach Entfernen des vorherigen obersten Elements (2): 1");
         </script>
         <!-- dieser Code zeigt die Implementierung und die Tests an -->
         <script>$('pre#ad-1-3-source').html($('#ad-1-3-code').html())</script>
